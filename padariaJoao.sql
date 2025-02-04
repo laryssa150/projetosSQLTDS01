@@ -514,6 +514,20 @@ select * from tbProdutos where nome not like 'E%';
 select * from tbProdutos where nome like '%MO%' or tipo like '%MA%';
 select * from produtos where quantidade >300;
 
+select func.nome as 'Nome do funcionario', usu.nome as 'Nome do usuario'  from tbUsuarios as usu
+inner join tbFuncionarios as func
+on usu.codFunc= func.codFunc where func.nome like '%0%';
+on usu.codFunc= func.codFunc where func.nome like '%o%';
+select func.nome as'Funcionarios',cli.nome as 'Clientes',prod.descricao as 'Produtos',
+vend.quantidade as 'Quantidade',vend.valor as 'Valor'
+from tbVendas as vend inner join tbFuncionarios as func on func.codFunc = vend.codUsu 
+inner join tbClientes as cli on vend.codCli= cli.codCli
+inner join tbProdutos as prod on vend.codProd= prod.codProd;
+-- nome do fornecedor, lote do produto,validade do produto, email do fornecedor,quantidade de produto, cnpj do fornecedor,preço do produto
+select forn.nome as 'Fornecedores', prod.lote as 'Lote', prod.validade as 'Validade', forn.email as 'E-mail', 
+prod.quantidade as 'Quantidade', forn.cnpj as 'CNPJ', prod.preco as 'Preco'
+from tbProdutos as prod inner join tbFornecedores as forn on forn.codForn=prod.codProd;
+
 
 desc tbClientes;
 desc tbFuncionarios;
@@ -526,10 +540,6 @@ desc tbVendas;
 
 
 select * from tbVendas;
-
-
-
-
 select * from tbClientes;
 select * from tbFuncionarios;
 select * from tbFornecedores;
